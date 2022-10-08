@@ -1,18 +1,36 @@
 pipeline{
-    agent any
-    stages{
-      
-      stage('install'){
-          steps{
-          sh 'npm install'
-          }         
-      }
-        
-        stage('build'){
-          steps{
-          sh 'tar czf Node.tar.gz node_modules index.js package.json'
-          }         
-      }
+
+	agent any
+
+	environment {
+		DOCKERHUB_CREDENTIALS=credentials('kartikeya532001')
+	}
+
+	stages {
+	   
+
+		stage('Build') {
+
+			steps {
+				sh 'docker build -t kartikeya532001/nodeapp_test:latest .'
+			}
+		}
+
+		stage('Login') {
+
+			steps {
+				sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+			}
+		}
+
+		stage('Push') {
+
+			steps {
+				sh 'docker push kartikeya532001/nodeapp_test:latest'
+			}
+		}
+	}
+
 	
-    }
+
 }
