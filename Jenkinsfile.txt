@@ -1,0 +1,18 @@
+pipeline{
+    agent any
+    stages{
+      
+      stage('install'){
+          steps{
+          sh 'npm install'
+          }         
+      }
+        
+        stage('build'){
+          steps{
+          sh 'tar czf Node.tar.gz node_modules index.js package.json'
+          }         
+      }
+	
+    }
+}
