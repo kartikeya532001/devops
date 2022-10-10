@@ -37,7 +37,11 @@ pipeline{
 		}
 		stage('deployment') {
 		steps {
+			sh 'minikube status'
+			sh 'minikube start'
+			sh 'eval $(minikube docker-env)'
 			sh 'minikube kubectl -- apply -f deployment.yml'
+			
 		}
 		}
 	
