@@ -37,14 +37,10 @@ pipeline{
 		}
 		stage('deployment') {
 		steps {
-			sh 'kubectl apply -f deployment.yml'
+			sh 'minikube kubectl -- apply -f deployment.yml'
 		}
 		}
-		stage('service') {
-		steps {
-			sh 'kubectl apply -f service.yml'
-		}
-		}
+	
 	
 	}
 
