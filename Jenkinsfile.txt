@@ -35,6 +35,16 @@ pipeline{
 				sh 'docker push kartikeya532001/nodeapp_test:1.0'
 			}
 		}
+		stage('deployment') {
+		steps {
+			sh 'kubectl apply -f deployment.yml'
+		}
+		}
+		stage('service') {
+		steps {
+			sh 'kubectl apply -f service.yml'
+		}
+		}
 	
 	}
 
