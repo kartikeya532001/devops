@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: na-d
+spec:
+  selector:
+    matchLabels:
+      app: na-d
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: na-d 
+    spec:
+      containers:
+      - name: na-d
+        image: kartikeya532001/nodeapp_test:1.0
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 5000
