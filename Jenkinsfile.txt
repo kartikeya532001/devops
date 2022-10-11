@@ -38,9 +38,10 @@ pipeline{
 		stage('deployment') {
 		steps {
 			
-			sh 'minikube start'
+		
 			sh 'eval $(minikube docker-env)'
-			sh 'minikube kubectl -- apply -f deployment.yml'
+			sh 'docker pull kartikeya532001/nodeapp_test:1.0'
+			kubernetesDeploy (configs: 'deploymentservice.yml',kubeconfigId: 'kubernetesconfig')
 			
 		}
 		}
