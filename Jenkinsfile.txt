@@ -41,7 +41,9 @@ pipeline{
 		
 			sh 'eval $(minikube docker-env)'
 			sh 'docker pull kartikeya532001/nodeapp_test:1.0'
-			kubernetesDeploy (configs: 'deploymentservice.yml',kubeconfigId: 'kubernetesconfig')
+			sh 'export KUBECONFIG=/home/kartikeya/.kube/config'
+			sh 'kubectl apply -f deploymentservice.yml'
+			
 			
 		}
 		}
