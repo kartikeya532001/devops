@@ -38,11 +38,11 @@ pipeline{
 		stage('deployment') {
 		steps {
 			
-			sh 'minikube delete'
-			sh 'minikube start'
-			sh 'eval $(minikube docker-env)'
-			sh 'docker pull kartikeya532001/nodeapp_test:1.0'
-			sh 'export KUBECONFIG=/home/kartikeya/.kube/config'
+			sh 'sudo minikube delete'
+			sh 'sudo minikube start'
+			sh 'sudo eval $(minikube docker-env)'
+			sh 'sudo docker pull kartikeya532001/nodeapp_test:1.0'
+			sh 'sudo export KUBECONFIG=/home/kartikeya/.kube/config'
 			sh 'sudo kubectl apply -f deploymentservice.yml'
 			
 			
