@@ -29,6 +29,11 @@ pipeline {
                 sh 'docker push kartikeya532001/nodeapp_test:1.0'
             }
         }
+        stage('Pull') {
+            steps {
+                sh 'docker pull kartikeya532001/nodeapp_test:1.0'
+            }
+        }
         stage('deployment') {
             steps {
                 sshagent(['k8s']) {
