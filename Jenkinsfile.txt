@@ -32,12 +32,12 @@ pipeline {
         stage('deployment') {
             steps {
                 sshagent(['k8s']) {
-                    sh 'scp -o StrictHostKeyChecking=no deploymentservice.yml docker@127.0.0.1:/home/kartikeya/temp/devops'
+                    sh 'scp -o StrictHostKeyChecking=no deploymentservice.yml docker@10.96.0.1:/home/kartikeya/temp/devops'
                     script {
                         try {
-                            sh 'ssh docker@127.0.0.1 kubectl create -f .'
+                            sh 'ssh docker@10.96.0.1 kubectl create -f .'
                 }catch (error) {
-                            sh 'ssh docker@127.0.0.1 kubectl create -f .'
+                            sh 'ssh docker@10.96.0.1 kubectl create -f .'
                         }
                     }
                 }
